@@ -380,6 +380,7 @@ class Data():
             for j in range(0, defListLength):
                 if self.data[i].DefList[j] == None:
                     choice: Word = random.choice(self.data)
+                    # assert same definition is not added multiple times to a word
                     while choice.Def in self.data[i].DefList:
                         choice = random.choice(self.data)
                     self.data[i].DefList[j] = Definition(choice.Def, False)
@@ -400,11 +401,14 @@ class Word():
     # list of definitions of type [def:str, correct:bool]
     DefList = None
 
-    def __init__(self, Name: str, Type: str, Def: str):
+    def __init__(self, Name: str, Type: str, Def: str, DefList = None):
         self.Name = Name
         self.Type = Type
         self.Def = Def
-        self.DefList = [ None ] * 4
+        if DefList == None:
+            self.DefList = [ None ] * 4
+        else:
+            self.DefList = DefList
 
 class Definition():
     Def = ""

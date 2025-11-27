@@ -31,7 +31,7 @@ class Main():
             return 2
         if char == "d":
             return 3
-        return 0
+        return -1
         
     def indexToalpha(self, n: int):
         if n == 0:
@@ -42,27 +42,49 @@ class Main():
             return "c"
         if n == 3:
             return "d"
-        return "a"
+        return "z"
+    
+    def GetTypeString(self, string: str):
+        if string == "n":
+            return "noun"
+        elif string == "a":
+            return "adjective"
+        elif string == "v":
+            return "verb"
+        elif string == "pn":
+            return "pronoun"
+        elif string == "pv":
+            return "proverb"
+        elif string == "av":
+            return "adverb"
+        else:
+            return "unknown"
 
     def Begin(self):
         counter = 1
+        originalLen = len(self.wordList)
+        numCorrect = 0
         print("Welcome to VocabBuilder.py")
         print("A Python Notecard System by Axel Wahlstrom")
         print("Select the best definition for the given word: a, b, c, or d")
         print("===========================================")
         while len(self.wordList) > 0:
             curr: Word = self.wordList.pop(0)
-            print(str(counter) + ". " + curr.Type + " | " + curr.Name)
+            print(str(counter) + ". " + self.GetTypeString(curr.Type) + " | " + curr.Name)
             print()
             for i in range(0, len(curr.DefList)):
                 print(str(self.indexToalpha(i)) + ": " + curr.DefList[i].Def)
             
             uIn = input("> ")
             index = self.alphaToindex(uIn)
-            result: Definition = curr.DefList[index]
+            result: Definition = None 
+            
+            if index != -1:
+                result = curr.DefList[index]
 
-            if result.Correct:
+            if result != None and result.Correct:
                 print("Correct!")
+                numCorrect = numCorrect + 1
             else:
                 print("Incorrect!")
                 print(curr.Name + " - " + curr.Def)
@@ -72,7 +94,10 @@ class Main():
 
             print("===========================================")
         
-        print("Well Done! Scoring coming soon!")
+        score = numCorrect / originalLen
+        pct = str(score * 100) + "%"
+        print("Well Done!")
+        print("Score: " + pct)
         print("Exiting application... Goodbye!")
 
 
