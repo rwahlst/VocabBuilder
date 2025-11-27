@@ -8,6 +8,7 @@ class Main():
 
     d = None
     wordList = None
+    APP_VERSION = "1.0.1"
 
     def ClearTerminal(self):
         # 'nt' for Windows, 'posix' for Linux/macOS
@@ -65,8 +66,11 @@ class Main():
         originalLen = len(self.wordList)
         numCorrect = 0
         print("Welcome to VocabBuilder.py")
-        print("A Python Notecard System by Axel Wahlstrom")
+        print("A Python Notecard System")
+        print("v." + self.APP_VERSION)
         print("Select the best definition for the given word: a, b, c, or d")
+        print("===========================================")
+        print("Current word list length: " + str(originalLen))
         print("===========================================")
         while len(self.wordList) > 0:
             curr: Word = self.wordList.pop(0)
