@@ -81,7 +81,7 @@ class Main():
             
             uIn = input("> ")
             index = self.alphaToindex(uIn)
-            result: Definition = None 
+            result: Definition = None
             
             if index != -1:
                 result = curr.DefList[index]
@@ -92,9 +92,11 @@ class Main():
             else:
                 print("Incorrect!")
                 print(curr.Name + " - " + curr.Def)
+                curr.Redo = True
                 self.wordList.append(curr)
             
-            counter = counter + 1
+            if not curr.Redo:
+                counter = counter + 1
 
             print("===========================================")
         

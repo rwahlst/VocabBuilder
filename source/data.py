@@ -588,6 +588,7 @@ class Word():
     Name = ""
     Type = ""
     Def = ""
+    Redo = False
 
     # list of definitions of type [def:str, correct:bool]
     DefList = None
@@ -596,6 +597,7 @@ class Word():
         self.Name = Name
         self.Type = Type
         self.Def = Def
+        self.Redo = False
         if DefList == None:
             self.DefList = [ None ] * 4
         else:
