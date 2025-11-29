@@ -8,7 +8,7 @@ class Main():
 
     d = None
     wordList = None
-    APP_VERSION = "1.0.1"
+    APP_VERSION = "1.0.2"
 
     def ClearTerminal(self):
         # 'nt' for Windows, 'posix' for Linux/macOS
@@ -63,6 +63,7 @@ class Main():
 
     def Begin(self):
         counter = 1
+        label = 1
         originalLen = len(self.wordList)
         numCorrect = 0
         print("Welcome to VocabBuilder.py")
@@ -74,7 +75,7 @@ class Main():
         print("===========================================")
         while len(self.wordList) > 0:
             curr: Word = self.wordList.pop(0)
-            print(str(counter) + ". " + self.GetTypeString(curr.Type) + " | " + curr.Name)
+            print(str(label) + ". " + self.GetTypeString(curr.Type) + " | " + curr.Name)
             print()
             for i in range(0, len(curr.DefList)):
                 print(str(self.indexToalpha(i)) + ": " + curr.DefList[i].Def)
@@ -97,6 +98,7 @@ class Main():
             
             if not curr.Redo:
                 counter = counter + 1
+            label = label + 1
 
             print("===========================================")
         
