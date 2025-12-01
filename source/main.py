@@ -9,7 +9,7 @@ class Main():
 
     d = None
     wordList = None
-    APP_VERSION = "1.0.3"
+    APP_VERSION = "1.0.4"
 
     def ClearTerminal(self):
         # 'nt' for Windows, 'posix' for Linux/macOS
@@ -25,13 +25,13 @@ class Main():
         self.Begin()
 
     def alphaToindex(self, char: str):
-        if char == "a":
+        if char.lower() == "a":
             return 0
-        if char == "b":
+        if char.lower() == "b":
             return 1
-        if char == "c":
+        if char.lower() == "c":
             return 2
-        if char == "d":
+        if char.lower() == "d":
             return 3
         return -1
         
@@ -91,8 +91,11 @@ class Main():
             index = self.alphaToindex(uIn)
             result: Definition = None
             
-            if index != -1:
-                result = curr.DefList[index]
+            while index == -1:
+                uIn = input("> ")
+                index = self.alphaToindex(uIn)
+                
+            result = curr.DefList[index]
 
             if result != None and result.Correct:
                 print("Correct!")
@@ -110,7 +113,7 @@ class Main():
             label = label + 1
 
             print("===========================================")
-            time.sleep(1)
+            time.sleep(sleepTime)
             self.ClearTerminal()
         
         score = numCorrect / originalLen
@@ -118,10 +121,6 @@ class Main():
         print("Well Done!")
         print("Score: " + pct)
         print("Exiting application... Goodbye!")
-
-
-
-
 
 
 m = Main()
