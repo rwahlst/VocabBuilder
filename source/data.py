@@ -502,7 +502,6 @@ class Data():
         self.data.append(Word("marred", "a", "damaged, scarred"))
         self.data.append(Word("novel", "a", "new, original"))
         self.data.append(Word("objective", "a", "without bias"))
-        self.data.append(Word("obscure", "a", "unclear,  clouded"))
         self.data.append(Word("orthodox", "a", "conventional"))
         self.data.append(Word("pedestrian", "a", "common, ordinary"))
         self.data.append(Word("peripheral", "a", "unimportant"))
