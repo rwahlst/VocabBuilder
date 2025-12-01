@@ -613,3 +613,5 @@ class Definition():
 
     def __eq__(self, value):
         return self.Def == value
+    
+print("Usage: python main.py")

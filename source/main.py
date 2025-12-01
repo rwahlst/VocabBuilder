@@ -2,13 +2,14 @@
 # Usage: python main.py
 
 from data import Data, Word, Definition
+import time
 import os
 
 class Main():
 
     d = None
     wordList = None
-    APP_VERSION = "1.0.2"
+    APP_VERSION = "1.0.3"
 
     def ClearTerminal(self):
         # 'nt' for Windows, 'posix' for Linux/macOS
@@ -60,20 +61,26 @@ class Main():
             return "adverb"
         else:
             return "unknown"
+    
+    def PrintWelcome(self, listLen: int, remainingLen: int):
+        print("Welcome to VocabBuilder.py")
+        print("A Python Notecard System")
+        print("v." + self.APP_VERSION)
+        print("Select the best definition for the given word: a, b, c, or d")
+        print("===========================================")
+        print("Total words: " + str(listLen))
+        print("Words remaining: " + str(remainingLen))
+        print("===========================================")
 
     def Begin(self):
         counter = 1
         label = 1
         originalLen = len(self.wordList)
         numCorrect = 0
-        print("Welcome to VocabBuilder.py")
-        print("A Python Notecard System")
-        print("v." + self.APP_VERSION)
-        print("Select the best definition for the given word: a, b, c, or d")
-        print("===========================================")
-        print("Current word list length: " + str(originalLen))
-        print("===========================================")
+        sleepTime = 0
+
         while len(self.wordList) > 0:
+            self.PrintWelcome(originalLen, len(self.wordList))
             curr: Word = self.wordList.pop(0)
             print(str(label) + ". " + self.GetTypeString(curr.Type) + " | " + curr.Name)
             print()
@@ -90,17 +97,21 @@ class Main():
             if result != None and result.Correct:
                 print("Correct!")
                 numCorrect = numCorrect + 1
+                sleepTime = 1
             else:
                 print("Incorrect!")
                 print(curr.Name + " - " + curr.Def)
                 curr.Redo = True
                 self.wordList.append(curr)
+                sleepTime = 2.5
             
             if not curr.Redo:
                 counter = counter + 1
             label = label + 1
 
             print("===========================================")
+            time.sleep(1)
+            self.ClearTerminal()
         
         score = numCorrect / originalLen
         pct = str(score * 100) + "%"
