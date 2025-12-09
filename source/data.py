@@ -109,7 +109,6 @@ class Data():
         self.data.append(Word("fallacy", "n", "mistaken or erroneous idea, assumption, or conclusion"))
         self.data.append(Word("fantasy", "n", "imagined scenario or situation"))
         self.data.append(Word("fallacy", "n", "mistaken or erroneous idea, assumption, or conclusion"))
-        self.data.append(Word("fantasy", "n", "imagined scenario or situation"))
         self.data.append(Word("fervor", "n", "passion or enthusiasm"))        
         self.data.append(Word("feud", "n", "long-term disagreement or open hatred between individuals or groups"))
         self.data.append(Word("fisaco", "n", "disaster or complete failure"))
